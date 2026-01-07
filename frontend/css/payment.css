@@ -1,0 +1,73 @@
+/* payment.css */
+
+.payment-page {
+  padding: 100px 20px 60px;
+  background: #000;
+  color: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+.payment-page .section-header {
+  color: #e53935;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.payment-form {
+  background: #111;
+  padding: 2rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+.payment-form .form-group {
+  margin-bottom: 1.25rem;
+}
+.payment-form label {
+  display: block;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+.payment-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background: #1a1a1a;
+  color: #fff;
+}
+.payment-form .form-row {
+  display: flex;
+  gap: 1rem;
+}
+.payment-form .btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.payment-form .btn-primary:hover {
+  background: #c62828;
+}
+
+/* Summary card reuse */
+.summary-card {
+  margin-bottom: 1.5rem;
+  background: #111;
+  border: 2px solid #e53935;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #ccc;
+}
+.summary-card h3 {
+  color: #e53935;
+  margin-bottom: 0.75rem;
+}
+.summary-card p {
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,180 @@
+/* ============================================================
+   HOMEPAGE.CSS
+   Custom styling for the homepage of CarRental
+   Theme: Black background, red accents, modern aesthetic
+   ============================================================ */
+
+/* =============================================================
+   HOMEPAGE.CSS – page‑specific styles
+   ============================================================= */
+
+/* ------------------------
+   HERO – fills the viewport
+   ------------------------ */
+   .hero{
+    position:relative;
+    margin-top:70px;
+    height:calc(100vh - 70px);
+    background:url('../images/hero-bg.jpg') no-repeat center/cover;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:0 20px;
+  }
+  .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);}
+  .hero-content{position:relative;z-index:1;}
+  .hero h1{font-size:3rem;margin-bottom:20px;color:#fff;}
+  .hero p{font-size:1.2rem;margin-bottom:30px;color:#ccc;}
+  .hero .hero-btn{
+    padding:10px 20px;font-size:1.1rem;border-radius:5px;border:none;
+    background:#e53935;color:#fff;text-decoration:none;transition:background .3s;
+  }
+  .hero .hero-btn:hover{background:#c62828;}
+  
+  /* ------------------------
+     OUR ADVANTAGES (unchanged)
+     ------------------------ */
+  .advantages-section{background:#000;padding:40px 20px;text-align:center;color:#fff;}
+  .advantages-section .section-header{font-size:2rem;color:#e53935;margin-bottom:2rem;font-weight:bold;}
+  .advantages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1200px;margin:0 auto;}
+  .advantage-card{display:flex;flex-direction:column;align-items:center;padding:1rem;}
+  .advantage-icon{width:80px;height:80px;margin-bottom:1rem;}
+  .advantage-title{font-size:1.25rem;color:#e53935;margin-bottom:.5rem;}
+  .advantage-text{font-size:1rem;color:#ccc;}
+  
+  @media(max-width:1024px){.advantages-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:768px){.advantages-grid{grid-template-columns:1fr}}
+  
+  /* ---------------------------------
+     Today's Featured Cars Section
+  --------------------------------- */
+  .featured-cars-section {background-color: #000;padding: 40px 20px;text-align: center;color: #fff;}
+  .featured-cars-section .section-header {font-size: 2rem;color: #e53935;margin-bottom: 2rem;font-weight: bold;}
+  .featured-grid {display: grid;grid-template-columns: repeat(3, 1fr);gap: 2rem;max-width: 1200px;margin: 0 auto;}
+  .featured-card {position: relative;overflow: hidden;border: 2px solid #e53935;border-radius: 10px;transition: transform 0.3s ease;}
+  .featured-card:hover {transform: scale(1.02);}
+  .featured-card img {width: 100%;height: 250px;object-fit: cover;}
+  .card-overlay {position: absolute;inset: 0;background-color: rgba(0, 0, 0, 0.6);opacity: 0;display: flex;align-items: center;justify-content: center;transition: opacity 0.3s ease;}
+  .featured-card:hover .card-overlay {opacity: 1;}
+  .go-to-car-btn {background-color: #e53935;color: #fff;padding: 10px 20px;border-radius: 5px;text-decoration: none;font-size: 1.1rem;transition: background-color 0.3s ease;}
+  .go-to-car-btn:hover {background-color: #c62828;}
+  .see-more-container {margin-top: 2rem;}
+  .see-more-btn {padding: 10px 20px;background-color: #e53935;color: #fff;border: none;border-radius: 5px;font-size: 1.1rem;text-decoration: none;}
+  .see-more-btn:hover {background-color: #c62828;}
+  @media (max-width: 768px) {.featured-grid { grid-template-columns: 1fr; }}
+  
+  /* ================================
+   Statistics Section (refined)
+   ================================ */
+.stats-section {
+  background: #000;
+  padding: 0;                /* cards define their own spacing */
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 3rem auto;
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-item .card-title {
+  color: #e53935;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+/* the glowy box */
+.stats-card {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  border: 2px solid #e53935;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  animation: pulsate 2.5s ease-in-out infinite;
+}
+
+/* image fills entire card */
+.stats-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay on bottom of image card */
+.stats-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.stats-overlay .car-name {
+  margin: 0;
+  color: #e53935;
+  font-size: 1.8rem;
+}
+
+.stats-overlay .small-text {
+  margin: 0.25rem 0 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* center the rate in the right-hand card */
+.rate-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.fee-amount {
+  margin: 0;
+  color: #e53935;
+  font-size: 2rem;
+}
+
+/* pulsate keyframes (already had these) */
+@keyframes pulsate {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(229,57,53,0.4), 0 0 16px rgba(229,57,53,0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(229,57,53,0.8), 0 0 40px rgba(229,57,53,0.8);
+  }
+}
+  
+  /* ---------------------------
+     Customer Reviews Section
+  --------------------------- */
+  .reviews-section {background-color: #000;padding: 40px 20px 60px 20px;text-align: center;color: #fff;}
+  .reviews-section .section-header {font-size: 2rem;color: #e53935;margin-bottom: 1.5rem;font-weight: bold;}
+  .reviews-cards-wrapper {display: flex;justify-content: center;flex-wrap: wrap;gap: 20px;max-width: 1200px;margin: 0 auto;}
+  .review-card {background-color: #1a1a1a;padding: 20px;border-radius: 10px;width: 350px;box-shadow: 0 4px 8px rgba(0,0,0,0.3);transition: transform 0.3s ease, box-shadow 0.3s ease;text-align: left;}
+  .review-card:hover {transform: translateY(-5px);box-shadow: 0 8px 16px rgba(229,57,53,0.5);}
+  .review-header {display: flex;align-items: center;margin-bottom: 10px;}
+  .reviewer-img {width: 80px;height: 80px;border-radius: 50%;object-fit: cover;margin-right: 15px;border: 2px solid #e53935;}
+  .reviewer-info {text-align: left;}
+  .reviewer-name {font-size: 1.2rem;color: #e53935;margin: 0;}
+  .review-date {font-size: 0.9rem;color: #ccc;}
+  .review-body {font-size: 1rem;color: #fff;}
+  .review-comment {margin: 0;}
+
+
+
+
+  /* hide the “Go to Car” overlay on the featured-cars section */
+.featured-card .card-overlay {
+  display: none !important;
+}
+  

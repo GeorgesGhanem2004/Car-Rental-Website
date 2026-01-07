@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Rental Service – Car Groups</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/carGroups.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  
+    <div class="auth-buttons">
+      <div class="public-only">
+        <button class="btn" id="open-auth-modal">Join Us</button>
+      </div>
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-modal-content">
+      <span id="close-modal" class="close-modal">&times;</span>
+      <div class="modal-forms">
+        <div id="signup-form" class="modal-form">
+          <h2 class="auth-title">Sign Up</h2>
+          <form action="/signup" method="POST" class="auth-form">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm-password">Confirm Password</label>
+              <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+          </form>
+          <p class="auth-footer">Already have an account? <a href="#" id="show-login">Log In</a></p>
+        </div>
+        <div id="login-form" class="modal-form" style="display:none;">
+          <h2 class="auth-title">Log In</h2>
+          <form action="/login" method="POST" class="auth-form">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign In</button>
+          </form>
+          <p class="auth-footer">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="homepage-content" style="margin-top:75px; padding-top:100px;">
+    <div class="title-container"><h1 style="color:#e33">Car Groups</h1></div>
+    <div class="content-container">
+
+      <!-- Filter Button/Section -->
+      <div class="filter-button-container">
+        <button class="filter-btn" onclick="toggleFilter()">Filter</button>
+      </div>
+      <div class="filter-section" id="filterSection">
+        <div class="filter-content">
+          <form id="filterForm">
+            <label for="engineSize">Min Engine Size (cc):</label>
+            <input type="number" id="engineSize" placeholder="e.g. 2000"><br>
+
+            <label for="fuelType">Fuel Type:</label>
+            <select id="fuelType">
+              <option value="">Any</option>
+              <option>Petrol</option>
+              <option>Diesel</option>
+              <option>Electric</option>
+              <option>Hybrid</option>
+            </select><br>
+
+            <label for="gearbox">Gearbox:</label>
+            <select id="gearbox">
+              <option value="">Any</option>
+              <option>Automatic</option>
+              <option>Manual</option>
+              <option>CVT</option>
+            </select><br>
+
+            <label for="doors">Doors:</label>
+            <select id="doors">
+              <option value="">Any</option><option>2</option><option>4</option><option>5</option>
+            </select><br>
+
+            <label for="passengers">Passengers:</label>
+            <select id="passengers">
+              <option value="">Any</option><option>2</option><option>4</option><option>5</option><option>7</option>
+            </select><br>
+
+            <label for="hasAC">AC:</label>
+            <select id="hasAC">
+              <option value="">Any</option><option value="true">Yes</option><option value="false">No</option>
+            </select><br>
+
+            <label for="electricWindows">Electric Windows:</label>
+            <select id="electricWindows">
+              <option value="">Any</option><option value="true">Yes</option><option value="false">No</option>
+            </select><br>
+
+            <button type="submit" class="btn">Apply Filters</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Static Group Cards -->
+      <div class="group-cards-grid-wrapper">
+        <div class="group-card">
+          <h3>Convertible</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 2000 cc</li>
+            <li><strong>Doors:</strong> 2</li>
+            <li><strong>Passengers:</strong> 4</li>
+            <li><strong>Fuel:</strong> Petrol</li>
+            <li><strong>Gearbox:</strong> Automatic</li>
+            <li><strong>AC:</strong> Yes</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=Convertible" class="btn btn-group">View Convertibles</a>
+        </div>
+        <div class="group-card">
+          <h3>EV</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 0 cc</li>
+            <li><strong>Doors:</strong> 4</li>
+            <li><strong>Passengers:</strong> 5</li>
+            <li><strong>Fuel:</strong> Electric</li>
+            <li><strong>Gearbox:</strong> Single-Speed</li>
+            <li><strong>AC:</strong> Yes</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=EV" class="btn btn-group">View EVs</a>
+        </div>
+        <div class="group-card">
+          <h3>Hybrid</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 1800 cc</li>
+            <li><strong>Doors:</strong> 4</li>
+            <li><strong>Passengers:</strong> 5</li>
+            <li><strong>Fuel:</strong> Hybrid</li>
+            <li><strong>Gearbox:</strong> CVT</li>
+            <li><strong>AC:</strong> Yes</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=Hybrid" class="btn btn-group">View Hybrids</a>
+        </div>
+        <div class="group-card">
+          <h3>Luxury Sedan</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 3000 cc</li>
+            <li><strong>Doors:</strong> 4</li>
+            <li><strong>Passengers:</strong> 5</li>
+            <li><strong>Fuel:</strong> Petrol</li>
+            <li><strong>Gearbox:</strong> Automatic</li>
+            <li><strong>AC:</strong> Dual-Zone</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=Luxury Sedan" class="btn btn-group">View Luxury Sedans</a>
+        </div>
+        <div class="group-card">
+          <h3>Minivan</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 2500 cc</li>
+            <li><strong>Doors:</strong> 5</li>
+            <li><strong>Passengers:</strong> 7</li>
+            <li><strong>Fuel:</strong> Petrol/Diesel</li>
+            <li><strong>Gearbox:</strong> Automatic</li>
+            <li><strong>AC:</strong> Yes</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=Minivan" class="btn btn-group">View Minivans</a>
+        </div>
+        <div class="group-card">
+          <h3>SUV</h3>
+          <ul class="group-specs">
+            <li><strong>Engine:</strong> 2400 cc</li>
+            <li><strong>Doors:</strong> 5</li>
+            <li><strong>Passengers:</strong> 7</li>
+            <li><strong>Fuel:</strong> Diesel/Petrol</li>
+            <li><strong>Gearbox:</strong> Automatic</li>
+            <li><strong>AC:</strong> Yes</li>
+            <li><strong>Electric Windows:</strong> Yes</li>
+          </ul>
+          <a href="carGroup.html?group=SUV" class="btn btn-group">View SUVs</a>
+        </div>
+      </div>
+
+      <!-- Container for Filtered Results (Hidden by Default) -->
+      <div id="filteredCarsContainer" class="group-cards-grid-wrapper" style="display:none;"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+  <script>
+    function toggleFilter() {
+      document.getElementById('filterSection').classList.toggle('active');
+    }
+
+    document.getElementById('filterForm').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const filters = {
+        engineSize: Number(document.getElementById('engineSize').value),
+        fuelType: document.getElementById('fuelType').value,
+        gearbox: document.getElementById('gearbox').value,
+        numDoors: Number(document.getElementById('doors').value),
+        numPassengers: Number(document.getElementById('passengers').value),
+        hasAC: document.getElementById('hasAC').value,
+        electricWindows: document.getElementById('electricWindows').value
+      };
+
+      let anyFilter = false;
+      document.querySelectorAll('.group-card').forEach(card => {
+        // Extract specs from the card
+        const specs = {};
+        card.querySelectorAll('.group-specs li').forEach(li => {
+          const [label, val] = li.textContent.split(':').map(s => s.trim());
+          specs[label] = isNaN(Number(val)) ? val : Number(val);
+        });
+
+        // Evaluate visibility
+        let visible = true;
+        if (filters.engineSize && specs.Engine < filters.engineSize) visible = false;
+        if (filters.fuelType && specs.Fuel !== filters.fuelType) visible = false;
+        if (filters.gearbox && specs.Gearbox !== filters.gearbox) visible = false;
+        if (filters.numDoors && specs.Doors !== filters.numDoors) visible = false;
+        if (filters.numPassengers && specs.Passengers !== filters.numPassengers) visible = false;
+        if (filters.hasAC === 'true' && specs.AC !== 'Yes') visible = false;
+        if (filters.hasAC === 'false' && specs.AC !== 'No') visible = false;
+        if (filters.electricWindows === 'true' && specs['Electric Windows'] !== 'Yes') visible = false;
+        if (filters.electricWindows === 'false' && specs['Electric Windows'] !== 'No') visible = false;
+
+        if (visible && !anyFilter) anyFilter = true;
+        card.style.display = visible ? '' : 'none';
+      });
+
+      // Toggle original vs. filtered container
+      document.querySelector('.group-cards-grid-wrapper').style.display = anyFilter ? 'block' : 'block';
+      document.getElementById('filteredCarsContainer').style.display = 'none';
+    });
+  </script>
+</body>
+</html>

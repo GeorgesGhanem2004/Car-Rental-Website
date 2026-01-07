@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Checkout — CarRental</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="stylesheet" href="../css/checkout.css"/>
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+  <!-- Navbar (unchanged) -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <div class="auth-buttons">
+      <div class="public-only"><button class="btn" id="auth-trigger">Join Us</button></div>
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="checkout-section">
+    <h2 class="section-header">Checkout</h2>
+
+    <!-- Rental Summary -->
+    <div class="summary-card" id="summary-card"></div>
+
+    <!-- Discount Coupon -->
+    <div class="coupon-section">
+      <input type="text" id="coupon-code" placeholder="Enter discount code" />
+      <button type="button" id="apply-coupon" class="btn btn-secondary">Apply</button>
+    </div>
+
+    <!-- Checkout Form -->
+    <form id="checkout-form" class="checkout-form">
+      <fieldset class="personal-info">
+        <legend>Personal Information</legend>
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+961 70 123 456" required />
+        </div>
+      </fieldset>
+
+      <fieldset class="payment-methods">
+        <legend>Payment Method</legend>
+        <label><input type="radio" name="payment" value="card" checked /> Credit / Debit Card</label>
+        <label><input type="radio" name="payment" value="location" /> Pay at Location</label>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">Confirm & Pay</button>
+
+      <div class="transaction-actions">
+        <button type="button" class="btn btn-secondary" id="save-transaction">Save Transaction</button>
+        <button type="button" class="btn btn-secondary" id="request-quotation">Request Quotation</button>
+        <button type="button" class="btn btn-secondary" id="cancel-transaction">Cancel</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <p>&copy; 2025 CarRental. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/checkout.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

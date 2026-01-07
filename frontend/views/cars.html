@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Rental Service</title>
+  <!-- Global and Homepage CSS -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <!-- You can also include a homepage.css if there are additional styles only for the homepage -->
+  <link rel="stylesheet" href="../css/car.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+  
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <!-- Always visible -->
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      
+      <!-- Cars Dropdown (always visible) -->
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+  
+      <!-- Logged-in only -->
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  
+  
+    <!-- Auth Section -->
+    <div class="auth-buttons">
+      <!-- Logged-out State -->
+      <div class="public-only">
+        <button class="btn" id="auth-trigger">Join Us</button>
+      </div>
+  
+      <!-- Logged-in State -->
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="" style="margin-top: 75px; padding-top: 100px;">
+
+    <!-- title -->
+    <div class="title-container">
+      <h1>CRV</h1>
+    </div>
+  
+    <!-- car info -->
+    <div class="car-info-container">
+      
+      <!-- Car Image -->
+      <div class="car-image">
+        <img src="../assets/image.png" alt="CRV Image" />
+      </div>
+  
+      <!-- Rent Form -->
+      <div class="rent-form">
+        <form>
+          <h2>Rent This Car</h2>
+
+          <!-- Rental Dates -->
+          <div class="rental-dates">
+            <div class="date-group">
+              <label for="rental-start">Start Date:</label>
+              <input type="date" id="rental-start" name="rental-start" required>
+            </div>
+
+            <div class="date-group">
+              <label for="rental-end">End Date:</label>
+              <input type="date" id="rental-end" name="rental-end" required>
+            </div>
+          </div>
+
+          <div class="days-group">
+            <label for="rental-days">Number of Days:</label>
+            <input type="number" id="rental-days" name="rental-days" required>
+          </div>
+  
+          <!-- Add-ons -->
+          <fieldset>
+            <legend>Additional Services:</legend>
+            <label><input type="checkbox" name="addons" value="chauffeur"> Chauffeur</label><br>
+            <label><input type="checkbox" name="addons" value="baby-seat"> Baby Seat</label><br>
+            <label><input type="checkbox" name="addons" value="sat-nav"> Satellite Navigator</label>
+          </fieldset>
+  
+          <!-- Insurance Options -->
+          <fieldset>
+            <legend>Insurance:</legend>
+            <label><input type="radio" name="insurance" value="full"> Full Insurance</label><br>
+            <label><input type="radio" name="insurance" value="tires"> Tires & Windscreen</label><br>
+            <label><input type="radio" name="insurance" value="additional-driver"> Additional Driver Cover</label>
+          </fieldset>
+  
+          <!-- Fuel Options -->
+          <fieldset>
+            <legend>Fuel Option:</legend>
+            <label><input type="checkbox" name="fuel" value="prepaid"> Prepaid Fuel</label>
+          </fieldset>
+  
+          <!-- Submit -->
+          <button type="submit" class="rent-submit-btn">Rent Now</button>
+        </form>
+      </div>
+    </div>
+  
+  </main>
+  
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- JavaScript --> 
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

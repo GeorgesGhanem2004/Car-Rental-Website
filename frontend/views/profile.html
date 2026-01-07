@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Rental Service – Profile</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+  <style>
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 20px 0;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #e53935;
+    }
+    .profile-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: #111;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+    .modal-content h2 {
+      color: #e53935;
+      margin-top: 0;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+    .rewards-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+    .rewards-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .rewards-list button {
+      background: #e53935;
+      border: none;
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <div class="auth-buttons">
+      <div class="public-only"><button class="btn" id="auth-trigger">Join Us</button></div>
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- Main Profile -->
+  <main class="profile-main" style="margin-top:75px; padding-top:100px;">
+    <div class="title-container">
+      <img src="/assets/default-profile.png" alt="Profile Picture" class="avatar" />
+      <h1>User Profile</h1>
+    </div>
+
+    <div class="profile-container">
+      <section class="profile-section">
+        <h2>Credentials</h2>
+        <p><strong>Full Name:</strong> <span id="profile-fullname"></span></p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+      </section>
+
+      <section class="profile-section">
+        <h2>Personal Info</h2>
+        <p><strong>Phone:</strong> +961 71 123 456</p>
+        <p><strong>Address:</strong> Beirut, Lebanon</p>
+      </section>
+
+      <section class="profile-section">
+        <h2>Points</h2>
+        <p><strong>Total Points:</strong> <span id="total-points"></span> / 5 000</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="points-fill" style="width:0;"></div>
+        </div>
+        <p id="points-remaining"></p>
+
+        <div class="profile-actions">
+          <button id="view-rewards" class="btn">View Rewards</button>
+          <button id="edit-profile" class="btn">Edit Profile</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rewards Modal -->
+  <div id="rewards-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-rewards">&times;</span>
+      <h2>Your Rewards</h2>
+      <ul class="rewards-list">
+        <li>
+          <span>25% Discount – 1 000 pts</span>
+          <button data-points="1000">Redeem</button>
+        </li>
+        <li>
+          <span>50% Discount – 2 500 pts</span>
+          <button data-points="2500">Redeem</button>
+        </li>
+        <li>
+          <span>Free Ride – 5 000 pts</span>
+          <button data-points="5000">Redeem</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-edit">&times;</span>
+      <h2>Edit Profile</h2>
+      <form id="edit-form">
+        <div class="form-group">
+          <label for="edit-name">Full Name</label>
+          <input type="text" id="edit-name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-email">Email Address</label>
+          <input type="email" id="edit-email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-picture">Profile Picture</label>
+          <input type="file" id="edit-picture" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/profile.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const token   = localStorage.getItem('authToken');
+      const avatar  = document.querySelector('.avatar');
+      const nameEl  = document.getElementById('profile-fullname');
+      const emailEl = document.getElementById('profile-email');
+
+      // Load profile
+      fetch('/api/users/me', { headers: { 'Authorization': `Bearer ${token}` } })
+        .then(r => r.json())
+        .then(user => {
+          nameEl.textContent  = user.name;
+          emailEl.textContent = user.email;
+          document.getElementById('total-points').textContent = user.points;
+          const pct = Math.min((user.points / 5000) * 100, 100);
+          document.getElementById('points-fill').style.width = pct + '%';
+          document.getElementById('points-remaining').textContent =
+            `You have ${5000 - user.points} points remaining.`;
+          avatar.src = user.profilePicture || '/assets/default-profile.png';
+        });
+
+      // Rewards modal
+      const rewardsModal = document.getElementById('rewards-modal');
+      document.getElementById('view-rewards')
+        .addEventListener('click', () => rewardsModal.style.display = 'flex');
+      document.getElementById('close-rewards')
+        .addEventListener('click', () => rewardsModal.style.display = 'none');
+      window.addEventListener('click', e => {
+        if (e.target === rewardsModal) rewardsModal.style.display = 'none';
+      });
+
+      // Redeem buttons
+      document.querySelectorAll('.rewards-list button').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const cost       = Number(btn.dataset.points);
+          const rewardType = btn.parentNode.firstElementChild.textContent;
+          const res = await fetch('/api/users/redeem', {
+            method: 'POST',
+            headers: {
+              'Content-Type':  'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ pointsCost: cost, rewardType })
+          });
+          const json = await res.json();
+          if (!res.ok) return alert('Redeem failed: ' + json.error);
+          document.getElementById('total-points').textContent = json.newBalance;
+          const pct = (json.newBalance / 5000) * 100;
+          document.getElementById('points-fill').style.width = pct + '%';
+          document.getElementById('points-remaining').textContent =
+            `You have ${5000 - json.newBalance} points remaining.`;
+          if (json.couponCode) {
+            alert(
+              `🎉 You unlocked: ${json.redeemed}\n` +
+              `Your coupon code is: ${json.couponCode}\n` +
+              `Discount: ${json.discount * 100}%\n` +
+              `Expires: ${new Date(json.expires).toLocaleDateString()}`
+            );
+          } else {
+            alert(`Redeemed: ${json.redeemed}`);
+          }
+          rewardsModal.style.display = 'none';
+        });
+      });
+
+      // Edit Profile modal logic
+      const editModal  = document.getElementById('edit-modal');
+      const editBtn    = document.getElementById('edit-profile');
+      const closeEdit  = document.getElementById('close-edit');
+      const cancelEdit = document.getElementById('cancel-edit');
+      const editForm   = document.getElementById('edit-form');
+      const inName     = document.getElementById('edit-name');
+      const inEmail    = document.getElementById('edit-email');
+      const inPic      = document.getElementById('edit-picture');
+      let picData      = null;
+
+      inPic.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => picData = reader.result;
+        reader.readAsDataURL(file);
+      });
+
+      editBtn.addEventListener('click', () => {
+        inName.value  = nameEl.textContent;
+        inEmail.value = emailEl.textContent;
+        picData       = null;
+        editModal.style.display = 'flex';
+      });
+
+      function closeModal() { editModal.style.display = 'none'; }
+      closeEdit.addEventListener('click', closeModal);
+      cancelEdit.addEventListener('click', closeModal);
+      window.addEventListener('click', e => { if (e.target === editModal) closeModal(); });
+
+      editForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const payload = {
+          name: inName.value.trim(),
+          email: inEmail.value.trim(),
+          ...(picData && { profilePicture: picData })
+        };
+        const res = await fetch('/api/users/me', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type':  'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (!res.ok) return alert('Error: ' + (json.error || json));
+        nameEl.textContent  = json.name;
+        emailEl.textContent = json.email;
+        avatar.src          = json.profilePicture;
+        alert('Profile updated');
+        closeModal();
+      });
+    });
+  </script>
+</body>
+</html>

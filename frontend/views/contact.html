@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Car Rental Service</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/aboutUs.css" />
+  <link rel="stylesheet" href="../css/homepage.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+  
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <!-- Always visible -->
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      
+      <!-- Cars Dropdown (always visible) -->
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+  
+      <!-- Logged-in only -->
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  
+    <!-- Auth Section -->
+    <div class="auth-buttons">
+      <!-- Logged-out State -->
+      <div class="public-only">
+        <button class="btn" id="auth-trigger">Join Us</button>
+      </div>
+  
+      <!-- Logged-in State -->
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <main style="margin-top: 75px; padding-top: 100px;">
+    <section class="content-container">
+      <div class="title-container">
+        <h1>Contact Us</h1>
+      </div>
+  
+      <div class="cards-container">
+        <div class="cards-grid">
+  
+          <!-- Instagram Card -->
+          <div class="card-container">
+            <div class="card-img-container" style="display: flex; align-items: center; justify-content: center; background-color: transparent;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 24 24" fill="white">
+                <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5a5 5 0 100-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0116.5 8.5z"/>
+              </svg>
+            </div>
+            <div class="card-content-container">
+              <h3>Instagram</h3>
+              <p>Follow us on Instagram for updates, car features, and more.</p>
+            </div>
+          </div>
+  
+          <!-- Facebook Card -->
+          <div class="card-container">
+            <div class="card-img-container" style="display: flex; align-items: center; justify-content: center; background-color: #1877f2;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 24 24" fill="white">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.86 7.94 9.8v-6.93h-2.4v-2.87h2.4V9.75c0-2.38 1.42-3.69 3.58-3.69 1.04 0 2.13.19 2.13.19v2.35h-1.2c-1.18 0-1.54.73-1.54 1.48v1.78h2.62l-.42 2.87h-2.2v6.93C18.56 20.86 22 16.84 22 12z"/>
+              </svg>
+            </div>
+            <div class="card-content-container">
+              <h3>Facebook</h3>
+              <p>Connect with us on Facebook for exclusive deals and offers.</p>
+            </div>
+          </div>
+  
+          <!-- WhatsApp Card -->
+          <div class="card-container">
+            <div class="card-img-container" style="display: flex; align-items: center; justify-content: center; background-color: #25D366;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 24 24" fill="white">
+                <path d="M20.52 3.48A11.902 11.902 0 0012.04 0C5.37 0 .08 5.44.08 12.15c0 2.14.57 4.18 1.66 6L0 24l6.15-1.61a12.052 12.052 0 005.88 1.5h.01c6.66 0 12.04-5.44 12.04-12.15a12.04 12.04 0 00-3.56-8.26zM12.04 22.01a10.02 10.02 0 01-5.13-1.42l-.37-.22-3.65.96.98-3.55-.24-.36A9.93 9.93 0 012.09 12.15c0-5.5 4.47-9.96 9.95-9.96 2.67 0 5.18 1.04 7.07 2.93a9.96 9.96 0 012.92 7.03c0 5.5-4.47 9.96-9.95 9.96zm5.39-7.54c-.29-.14-1.72-.85-1.98-.95-.27-.1-.47-.14-.66.14-.2.29-.76.95-.94 1.14-.17.2-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.42-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.14-.14.29-.34.44-.51.15-.17.2-.29.29-.48.1-.2.05-.36-.02-.5-.07-.14-.66-1.6-.91-2.2-.24-.58-.48-.5-.66-.51l-.56-.01c-.2 0-.5.07-.76.36s-1 1-1 2.44 1.02 2.84 1.16 3.04c.14.2 2.01 3.06 4.89 4.29.68.29 1.2.46 1.61.59.68.21 1.3.18 1.79.11.55-.08 1.72-.7 1.96-1.38.24-.67.24-1.24.17-1.38-.07-.14-.26-.22-.54-.36z"/>
+              </svg>
+            </div>
+            <div class="card-content-container">
+              <h3>WhatsApp</h3>
+              <p>Chat with us on WhatsApp for quick inquiries and reservations.</p>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
+
+   <!-- Footer -->
+   <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+  
+</body>
+</html>

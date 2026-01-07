@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Rental – Reservation</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <!-- Reservation‑only CSS -->
+  <link rel="stylesheet" href="../css/reservation.css" />
+
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+  
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <!-- Always visible -->
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      
+      <!-- Cars Dropdown (always visible) -->
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+  
+      <!-- Logged-in only -->
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <!-- Change the cart badge element -->
+    <button id="cart-btn" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  
+    <!-- Auth Section -->
+    <div class="auth-buttons">
+      <!-- Logged-out State -->
+      <div class="public-only">
+        <button class="btn" id="open-auth-modal">Join Us</button>
+      </div>
+  
+      <!-- Logged-in State -->
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <main class="reservation-section">
+    <h2 class="section-header">Make a Reservation</h2>
+
+    <!-- Search bar -->
+    <div class="reservation-search">
+      <input id="pickupLocation" type="text" placeholder="Pick‑Up Location" />
+      <input id="dropLocation"   type="text" placeholder="Return Location" />
+      <input id="pickupDate"     type="datetime-local" />
+      <input id="dropDate"       type="datetime-local" />
+      <input id="driverName"     type="text"   placeholder="Driver’s Name" />
+      <input id="driverAge"      type="number" placeholder="Driver’s Age (18–75)" min="18" max="75" />
+      <button class="btn search-btn" type="button">Show on Map</button>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Branch info -->
+    <div class="branch-info"></div>
+
+    <!-- Rent Form -->
+    <div class="rent-form-container">
+      <div class="rent-form">
+        <form id="reserveForm">
+          <h2>Rent This Car</h2>
+
+          <!-- hidden car id -->
+          <input type="hidden" id="carId" name="car" />
+
+          <!-- Add‑ons -->
+          <fieldset>
+            <legend>Additional Services:</legend>
+            <label><input type="checkbox" name="addons" value="chauffeur"> Chauffeur</label><br>
+            <label><input type="checkbox" name="addons" value="baby-seat"> Baby Seat</label><br>
+            <label><input type="checkbox" name="addons" value="sat-nav"> Satellite Navigator</label>
+          </fieldset>
+
+          <!-- Insurance -->
+          <fieldset>
+            <legend>Insurance:</legend>
+            <label><input type="radio" name="insurance" value="full"> Full Insurance</label><br>
+            <label><input type="radio" name="insurance" value="tires"> Tires & Windscreen</label><br>
+            <label><input type="radio" name="insurance" value="additional-driver"> Additional Driver Cover</label>
+          </fieldset>
+
+          <!-- Fuel -->
+          <fieldset>
+            <legend>Fuel Option:</legend>
+            <label><input type="checkbox" name="fuel" value="prepaid"> Prepaid Fuel</label>
+          </fieldset>
+
+          <!-- submit button -->
+          <button type="submit" class="rent-submit-btn">Rent Now</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html"   class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+
+  
+  <!-- Map & branches logic (restored) -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapEl = document.getElementById('map');
+    if (!mapEl) return;
+
+    const branches = [
+      { name: 'Beirut Airport', lat: 33.82111, lng: 35.48833, address: 'Khalde, Beirut, Lebanon',        phone: '+961 1 628 195' },
+      { name: 'Tripoli',        lat: 34.4333,   lng: 35.85,    address: 'Al‑Mina District, Tripoli, Lebanon', phone: '+961 6 123 456' },
+      { name: 'Sidon',          lat: 33.5563,   lng: 35.3734,  address: 'Corniche Al‑Mina, Sidon, Lebanon',    phone: '+961 7 234 567' },
+      { name: 'Baalbek',        lat: 34.00583,  lng: 36.21806, address: 'Beqaa Valley Hwy, Baalbek, Lebanon',  phone: '+961 8 345 678' },
+      { name: 'Zahle',          lat: 33.84675,  lng: 35.90203, address: 'Zahle Downtown, Zahle, Lebanon',      phone: '+961 8 456 789' },
+      { name: 'Tyre',           lat: 33.27002,  lng: 35.19433, address: 'Tyre Main Street, Tyre, Lebanon',     phone: '+961 7 567 890' },
+      { name: 'Jounieh',        lat: 33.98083,  lng: 35.61778, address: 'Bay Street, Jounieh, Lebanon',        phone: '+961 9 678 901' },
+      { name: 'Byblos',         lat: 34.123001, lng: 35.651928,address: 'Historic Souk Area, Jbeil, Lebanon',  phone: '+961 9 234 567' },
+      { name: 'Batroun',        lat: 34.25528,  lng: 35.65806, address: 'Main Street, Batroun, Lebanon',       phone: '+961 6 234 567' },
+      { name: 'Dbayeh',         lat: 33.933,    lng: 35.589,   address: 'Highway 51 (Dbayeh), Matn, Lebanon',  phone: '+961 4 526 101' }
+    ];
+    const commonHours = '08:00 – 20:00 daily';
+
+    const map = L.map('map').setView([33.9, 35.85], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    const pickupInput = document.getElementById('pickupLocation');
+    const dropInput   = document.getElementById('dropLocation');
+    const infoBox     = document.querySelector('.branch-info');
+    let selecting = null;
+    pickupInput.addEventListener('focus', () => selecting = 'pickup');
+    dropInput  .addEventListener('focus', () => selecting = 'drop');
+
+    branches.forEach(b => {
+      const marker = L.marker([b.lat, b.lng]).addTo(map);
+      marker.on('click', () => {
+        if (selecting === 'pickup') pickupInput.value = b.name;
+        else if (selecting === 'drop') dropInput.value = b.name;
+        infoBox.innerHTML = `
+          <h3>${b.name}</h3>
+          <p><strong>Hours:</strong> ${commonHours}</p>
+          <p><strong>Address:</strong> ${b.address}</p>
+          <p><strong>Phone:</strong> ${b.phone}</p>`;
+        infoBox.style.display = 'block';
+      });
+    });
+    map.on('click', () => infoBox.style.display = 'none');
+  });
+  </script>
+
+  <!-- Reservation submit logic -->
+
+    <!-- core utilities -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+  
+    <!-- cart badge logic must load before reservation.js -->
+    <script src="../js/cart.js"></script>
+  
+    <!-- your reservation form handling -->
+    <script src="../js/reservation.js"></script>
+  
+    <!-- leaflet maps (if you still need it) -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  </body>
+  </html>
+  
+  
+</body>
+</html>

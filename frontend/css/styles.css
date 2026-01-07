@@ -1,0 +1,293 @@
+/* =============================================================
+   GLOBAL STYLES – styles.css
+   Pure globals only (navbar, footer, reset, glaze, etc.)
+   ============================================================= */
+
+/* -------------  Reset --------------- */
+*{
+  margin:0;
+  padding:0;
+  box‑sizing:border‑box;
+}
+
+/* -------------  Flex page shell ---------------
+   • keep the footer at the very bottom
+   • everything between <nav> … <footer> may live in <main>
+------------------------------------------------ */
+html,
+body{
+  min-height:100vh;           /* full viewport for sticky footer */
+  display:flex;
+  flex-direction:column;      /* header  –>  main  –>  footer   */
+  background:#000;
+  color:#fff;
+  font-family:'Roboto',sans-serif;
+}
+
+/* let every page put its content in <main> */
+main{
+  flex:1;                     /* pushes footer down */
+}
+
+/* -------------  NAVBAR --------------- */
+.navbar{
+  width:100%;
+  position:fixed; top:0;
+  z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 20px;
+  background:rgba(0,0,0,.85);
+  border-bottom:1px solid #333;
+}
+.logo{font-size:1.8rem;font-weight:bold;color:#e53935;text-decoration:none}
+
+.nav-links{list-style:none;display:flex;}
+.nav-link{
+  margin:0 15px;color:#fff;text-decoration:none;font-size:1rem;transition:color .3s;
+}
+.nav-link:hover,.nav-link.active{color:#e53935}
+
+.auth-buttons .btn{
+  background:#e53935;color:#fff;padding:8px 16px;border-radius:5px;
+  text-decoration:none;transition:background .3s;
+}
+.auth-buttons .btn:hover{background:#c62828}
+
+/* burger on small screens */
+.hamburger{display:none;flex-direction:column;cursor:pointer}
+.hamburger .bar{height:3px;width:25px;background:#fff;margin:4px 0;transition:.3s}
+
+@media(max-width:768px){
+  .nav-links,.auth-buttons{display:none}
+  .hamburger{display:flex}
+}
+
+/* -------------  FOOTER --------------- */
+.footer{
+  width:100%;
+  background:#000;
+  padding:20px;
+  text-align:center;
+}
+.footer-links{margin-bottom:10px}
+.footer-link{margin:0 10px;color:#fff;text-decoration:none;transition:color .3s}
+.footer-link:hover{color:#e53935}
+
+/* -------------  RED GLAZE OVERLAY --------------- */
+html::before{
+  content:"";
+  position:fixed;inset:0;
+  background:linear-gradient(120deg,rgba(229,57,53,.2)0%,rgba(229,57,53,.6)50%,rgba(229,57,53,.2)100%);
+  pointer-events:none;z-index:-1;opacity:.3;animation:redGlaze 5s linear infinite;
+}
+@keyframes redGlaze{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+
+/* ─── Reservation Summary Bar ───────────────────────────────────────── */
+.reservation-summary {
+  position: fixed;
+  top: 70px;              /* just below your 70px navbar */
+  left: 0; right: 0;
+  background: #111;
+  color: #fff;
+  padding: .5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: .9rem;
+  z-index: 999;           /* above content but below modals */
+  border-bottom: 2px solid #e53935;
+}
+.reservation-summary .item {
+  margin-right: 2rem;
+}
+@media (max-width: 768px) {
+  .reservation-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .75rem 1rem;
+  }
+  .reservation-summary .item {
+    margin: .25rem 0;
+  }
+}
+/* hide until user is logged in & has started a reservation */
+.reservation-summary {
+  display: none;
+}
+.reservation-summary.visible {
+  display: flex;
+}
+/* hide any navbar link that points to booking.html */
+.nav-links a[href="booking.html"] {
+  display: none !important;
+}
+/* ========== AUTH VISIBILITY ========== */
+.auth-only { display: none ; }
+.public-only { display: flex; }
+
+/* ========== CARS DROPDOWN ========== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: rgba(0,0,0,0.95);
+  min-width: 200px;
+  z-index: 1001;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: rgba(229,57,53,0.3);
+}
+
+/* ========== PROFILE DROPDOWN ========== */
+.profile-menu {
+  position: relative;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.profile-header:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.profile-pic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #e53935;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #333;
+  border-radius: 4px;
+  min-width: 180px;
+  padding: 8px 0;
+}
+
+.profile-header:hover .profile-dropdown {
+  display: block;
+}
+
+.profile-dropdown a, 
+.profile-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+  background: rgba(229,57,53,0.3);
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: -100%;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(0,0,0,0.95);
+    transition: 0.3s;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .dropdown-content {
+    position: static;
+    background: transparent;
+    border: none;
+  }
+}
+/* ———————————— */
+/* Navbar & Cart Icon */
+/* ———————————— */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+/* Push cart-btn and auth-buttons to the right */
+/* center your main navigation */
+.nav-links {
+  display: flex;
+  flex: 1;                /* take up all space between logo & cart */
+  justify-content: center;/* center the links in that space */
+  gap: 1rem;
+}
+
+/* keep the cart/profile on the right */
+.cart-btn {
+  margin: 0 0.5rem;       /* uniform left/right gutter */
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-btn:hover {
+  color: #1976d2;
+}
+
+/* Badge bubble */
+#cart-count {
+  background-color: #e53935;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  position: absolute;
+  top: -0.3rem;
+  right: -0.6rem;
+}
+
+/* Ensure auth-buttons sit next to it */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

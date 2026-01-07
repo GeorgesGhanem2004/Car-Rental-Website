@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard – Users</title>
+  <link rel="stylesheet" href="/css/style.css"><!-- your global styles -->
+  <link rel="stylesheet" href="/css/admin.css"><!-- optional, for admin-specific tweaks -->
+</head>
+<body>
+  <header>
+    <nav>
+      <!-- add links to other admin pages here -->
+      <a href="/admin/users.html">Users</a>
+      <a href="/admin/cars.html">Cars</a>
+      <a href="/admin/carGroups.html">Groups</a> 
+      <a href="/admin/reservations.html">Reservations</a>
+      <a href="/index.html">Back to Site</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Manage Users</h1>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="/js/adminUsers.js"></script>
+</body>
+</html>

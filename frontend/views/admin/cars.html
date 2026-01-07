@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin – Cars</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/admin/users.html">Users</a>
+      <a href="/admin/cars.html" class="active">Cars</a>
+      <a href="/admin/carGroups.html">Groups</a>
+      <a href="/admin/reservations.html">Reservations</a>
+      <a href="/">Back to Site</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Manage Cars</h1>
+    <button id="addCarBtn">+ Add New Car</button>
+    <table id="carsTable">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Daily Rate</th>
+          <th>Image Path</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script src="/js/adminCars.js"></script>
+</body>
+</html>

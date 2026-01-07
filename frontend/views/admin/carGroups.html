@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin – Car Groups</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/admin/users.html">Users</a>
+      <a href="/admin/cars.html">Cars</a>
+      <a href="/admin/carGroups.html" class="active">Groups</a>
+      <a href="/admin/reservations.html">Reservations</a>
+      <a href="/">Back to Site</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Manage Car Groups</h1>
+    <button id="addGroupBtn">+ Add New Group</button>
+    <table id="groupsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Common Specs</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script src="/js/adminCarGroups.js"></script>
+</body>
+</html>

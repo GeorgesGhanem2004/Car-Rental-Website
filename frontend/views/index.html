@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Rental Service</title>
+  <!-- Global and Homepage CSS -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/homepage.css" />
+  <!-- Authentication CSS (for modal animations) -->
+  <link rel="stylesheet" href="../css/auth.css" />
+  <link rel="stylesheet" href="../css/chat.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+  
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <!-- Always visible -->
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      
+      <!-- Cars Dropdown (always visible) -->
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+  
+      <!-- Logged-in only -->
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  
+    <!-- Auth Section -->
+    <div class="auth-buttons">
+      <!-- Logged-out State -->
+      <div class="public-only">
+        <button class="btn" id="open-auth-modal">Join Us</button>
+      </div>
+  
+      <!-- Logged-in State -->
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <span class="profile-name"></span>
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+  
+  <!-- ───── Global Reservation Summary ───── -->
+  <div id="reservation-summary" class="reservation-summary">
+    <div class="item"><strong>Pickup:</strong> <span id="summary-pickup">—</span></div>
+    <div class="item"><strong>Drop‑off:</strong> <span id="summary-dropoff">—</span></div>
+    <div class="item"><strong>Group:</strong> <span id="summary-group">—</span></div>
+    <div class="item"><strong>Rental:</strong> <span id="summary-rental">$0.00</span></div>
+    <div class="item"><strong>Extras:</strong> <span id="summary-services">$0.00</span></div>
+    <div class="item"><strong>Total:</strong> <span id="summary-total">$0.00</span></div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Experience Luxury on Wheels</h1>
+      <p>Your premium car rental service awaits.</p>
+      <a href="carGroups.html" class="btn hero-btn">Discover Our Cars</a>
+    </div>
+  </header>
+  
+  <!-- Our Advantages Section -->
+  <section id="advantages" class="advantages-section">
+    <h2 class="section-header">Our Advantages</h2>
+    <div class="advantages-grid">
+      <!-- Advantage Card 1: 24/7 Support -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" stroke="#e53935" stroke-width="4"/>
+          <path d="M32 16V32L44 38" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="advantage-title">24/7 Support</h3>
+        <p class="advantage-text">We're available day and night for your needs.</p>
+      </div>
+      <!-- Advantage Card 2: Affordable Rates -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <text x="50%" y="50%" text-anchor="middle" fill="#e53935" font-size="32" dy=".3em">$</text>
+        </svg>
+        <h3 class="advantage-title">Affordable Rates</h3>
+        <p class="advantage-text">Competitive pricing without compromising quality.</p>
+      </div>
+      <!-- Advantage Card 3: Premium Fleet -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="20" width="48" height="20" rx="4" stroke="#e53935" stroke-width="4"/>
+          <circle cx="20" cy="46" r="4" stroke="#e53935" stroke-width="4"/>
+          <circle cx="44" cy="46" r="4" stroke="#e53935" stroke-width="4"/>
+          <path d="M8 20L16 8H48L56 20" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="advantage-title">Premium Fleet</h3>
+        <p class="advantage-text">A wide selection of luxury vehicles for every occasion.</p>
+      </div>
+      <!-- Advantage Card 4: Flexible Booking -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="18" width="40" height="34" stroke="#e53935" stroke-width="4" rx="4"/>
+          <line x1="12" y1="30" x2="52" y2="30" stroke="#e53935" stroke-width="4"/>
+          <line x1="20" y1="10" x2="20" y2="18" stroke="#e53935" stroke-width="4"/>
+          <line x1="44" y1="10" x2="44" y2="18" stroke="#e53935" stroke-width="4"/>
+        </svg>
+        <h3 class="advantage-title">Flexible Booking</h3>
+        <p class="advantage-text">Quick and convenient reservations tailored to you.</p>
+      </div>
+      <!-- Advantage Card 5: Instant Confirmation -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" stroke="#e53935" stroke-width="4"/>
+          <path d="M20 34L28 42L44 26" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="advantage-title">Instant Confirmation</h3>
+        <p class="advantage-text">Get immediate booking confirmation—no waiting!</p>
+      </div>
+      <!-- Advantage Card 6: Comprehensive Insurance -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4L12 12V30C12 45 22 55 32 60C42 55 52 45 52 30V12L32 4Z" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="advantage-title">Comprehensive Insurance</h3>
+        <p class="advantage-text">Your safety is our priority with full coverage options.</p>
+      </div>
+      <!-- Advantage Card 7: Extensive Network -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 12C23.1634 12 16 19.1634 16 28C16 41.3333 32 60 32 60C32 60 48 41.3333 48 28C48 19.1634 40.8366 12 32 12Z" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="28" r="4" fill="#e53935"/>
+        </svg>
+        <h3 class="advantage-title">Extensive Network</h3>
+        <p class="advantage-text">Multiple branches across the region for your convenience.</p>
+      </div>
+      <!-- Advantage Card 8: Loyalty Rewards -->
+      <div class="advantage-card">
+        <svg class="advantage-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4L39.09 24.26L60 24.27L42 38.74L49.09 59L32 45.27L14.91 59L22 38.74L4 24.27L24.91 24.26L32 4Z" stroke="#e53935" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="advantage-title">Loyalty Rewards</h3>
+        <p class="advantage-text">Earn points and get discounts on every rental.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Today's Featured Cars Section -->
+  <section id="featured-cars" class="featured-cars-section">
+    <h2 class="section-header">Today's Featured Cars</h2>
+    <div class="featured-grid">
+      <!-- Featured Card 1 -->
+      <div class="featured-card">
+        <img alt="featured car" />
+        <div class="card-overlay">
+          <a href="car-details.html?id=suv" class="go-to-car-btn">Go to Car</a>
+        </div>
+      </div>
+      <!-- Featured Card 2 -->
+      <div class="featured-card">
+        <img alt="featured car" />
+        <div class="card-overlay">
+          <a href="car-details.html?id=electric" class="go-to-car-btn">Go to Car</a>
+        </div>
+      </div>
+      <!-- Featured Card 3 -->
+      <div class="featured-card">
+        <img alt="featured car" />
+        <div class="card-overlay">
+          <a href="car-details.html?id=convertible" class="go-to-car-btn">Go to Car</a>
+        </div>
+      </div>
+    </div>
+    <div class="see-more-container">
+      <a href="carGroups.html" class="btn see-more-btn">See More Cars</a>
+    </div>
+  </section>
+  
+  <section id="statistics" class="stats-section">
+    <div class="stats-grid">
+      <!-- Most Popular Car -->
+      <div class="stats-item">
+        <h3 class="card-title">Most Popular Car</h3>
+        <div class="stats-card glowy-card">
+          <img
+            id="popular-car-image"
+            src="https://via.placeholder.com/800x400?text=Popular+Car"
+            alt="Most Popular Car"
+          />
+          <div class="stats-overlay">
+            <h4 id="popular-car-name" class="car-name">Car Name</h4>
+            <p id="popular-car-bookings" class="small-text">Bookings: 0</p>
+          </div>
+        </div>
+      </div>
+      <!-- Average Daily Rate -->
+      <div class="stats-item">
+        <h3 class="card-title">Average Daily Rate</h3>
+        <div class="stats-card glowy-card">
+          <div class="rate-overlay">
+            <p id="avg-fee-amount" class="fee-amount">$0.00 / day</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Customer Reviews Section -->
+  <section class="reviews-section">
+    <h2 class="section-header">What Our Customers Say</h2>
+    <div class="reviews-cards-wrapper">
+      <!-- Review Card 1 -->
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://via.placeholder.com/80" alt="Reviewer 1" class="reviewer-img">
+          <div class="reviewer-info">
+            <h3 class="reviewer-name">John Doe</h3>
+            <span class="review-date">April 15, 2025</span>
+          </div>
+        </div>
+        <div class="review-body">
+          <p class="review-comment">Amazing service and top-notch car selection. Highly recommended!</p>
+        </div>
+      </div>
+      <!-- Review Card 2 -->
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://via.placeholder.com/80" alt="Reviewer 2" class="reviewer-img">
+          <div class="reviewer-info">
+            <h3 class="reviewer-name">Jane Smith</h3>
+            <span class="review-date">April 14, 2025</span>
+          </div>
+        </div>
+        <div class="review-body">
+          <p class="review-comment">The booking process was smooth, and the car was exactly as advertised.</p>
+        </div>
+      </div>
+      <!-- Review Card 3 -->
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://via.placeholder.com/80" alt="Reviewer 3" class="reviewer-img">
+          <div class="reviewer-info">
+            <h3 class="reviewer-name">Alex Johnson</h3>
+            <span class="review-date">April 13, 2025</span>
+          </div>
+        </div>
+        <div class="review-body">
+          <p class="review-comment">Great customer service and excellent car quality. Will rent again!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Authentication Modal -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-modal-content">
+      <span id="close-modal" class="close-modal">&times;</span>
+      <div class="modal-forms">
+        <!-- Sign Up Form (default view) -->
+        <div id="signup-form" class="modal-form">
+          <h2 class="auth-title">Sign Up</h2>
+          <form action="/signup" method="POST" class="auth-form">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm-password">Confirm Password</label>
+              <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+          </form>
+          <p class="auth-footer">
+            Already have an account? <a href="#" id="show-login">Log In</a>
+          </p>
+        </div>
+        <!-- Login Form (hidden by default) -->
+        <div id="login-form" class="modal-form" style="display: none;">
+          <h2 class="auth-title">Log In</h2>
+          <form action="/login" method="POST" class="auth-form">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign In</button>
+          </form>
+          <p class="auth-footer">
+            Don't have an account? <a href="#" id="show-signup">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+      </div>
+      <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- JavaScript for Authentication Modal -->
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="../js/cart.js"></script>
+  <!-- Random featured cars from three distinct groups -->
+  <script src="../js/homepage.js"></script>
+  <script src="../js/chat.js"></script>
+  
+</body>
+</html>

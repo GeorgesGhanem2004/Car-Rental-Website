@@ -1,0 +1,130 @@
+.title-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-cards-grid-wrapper {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center; 
+    align-items: start;    
+    gap: 1rem;
+}
+
+/* Button to toggle filter section */
+.filter-btn {
+    padding: 10px 20px;
+    background-color: #e33; /* Red button */
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #d02a2a;
+}
+
+/* Filter Section (hidden by default) */
+.filter-section {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease-in-out;
+    padding: 20px;
+    z-index: 1000000;
+}
+
+/* Show the filter section */
+.filter-section.active {
+    left: 0;
+}
+
+/* Filter content inside the section */
+.filter-content h2 {
+    margin-bottom: 20px;
+}
+
+.filter-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-content form label {
+    margin-bottom: 5px;
+}
+
+.filter-content form select,
+.filter-content form button {
+    margin-bottom: 15px;
+    padding: 8px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.filter-content form button {
+    background-color: #e33;
+}
+
+.filter-content form button:hover {
+    background-color: #d02a2a;
+}
+
+.filter-button-container{
+    width: 60%; 
+    padding: 30px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .filter-btn {
+        z-index: 110;
+    }
+
+    .filter-section.active {
+        left: 0;
+        width: 100%;
+    }
+
+    .filter-button-container{
+        width: 60%; 
+        padding: 30px 0px;
+    }
+}
+
+.group-card {
+    width: 100%;
+    background-color: #1a1a1a;
+    padding: 40px;
+    height: 280px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+  
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(229,57,53,0.5);
+}

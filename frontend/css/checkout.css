@@ -1,0 +1,211 @@
+/* ============================================================
+   CHECKOUT.CSS – checkout‑page specifics
+   ============================================================ */
+   .checkout-section {
+    padding: 100px 20px 60px; /* clears fixed navbar */
+    background: #000;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .checkout-section .section-header {
+    font-size: 2rem;
+    color: #e53935;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* ----------  RENTAL SUMMARY  ---------- */
+  .summary-card {
+    background: #111;
+    border: 2px solid #e53935;
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+  }
+  .summary-card h3 {
+    color: #e53935;
+    margin-bottom: 1rem;
+  }
+  .summary-card p {
+    color: #ccc;
+    margin: 0.5rem 0;
+  }
+  .rate-line {
+    margin-bottom: 0; /* we’ll append discount-info here */
+  }
+  .total-amount {
+    font-weight: bold;
+  }
+  
+  /* ----------  COUPON SECTION  ---------- */
+  .coupon-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .coupon-section input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .coupon-section input::placeholder {
+    color: #888;
+  }
+  .coupon-section .btn-secondary {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .coupon-section .btn-secondary:hover {
+    background: #c62828;
+  }
+  .discount-info {
+    color: #8bc34a;
+    margin-left: 0.5rem;
+    font-weight: normal;
+  }
+  
+  /* ----------  FORM LAYOUT  ---------- */
+  .checkout-form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  
+  /* field‑sets get extra top‑padding so the legend can sit lower */
+  .personal-info,
+  .payment-methods {
+    background: #111;
+    padding: 3.2rem 1rem 1.5rem; /* ↑ top padding */
+    border: 1px solid #333;
+    border-radius: 8px;
+    position: relative; /* so legend can be positioned */
+  }
+  
+  /* legend sits INSIDE the box, 0.9 rem below the border */
+  .personal-info legend,
+  .payment-methods legend {
+    position: absolute;
+    top: 0.9rem; /* distance from top border */
+    left: 1rem; /* aligns with form text */
+    color: #e53935;
+    font-weight: bold;
+    background: #111; /* same as box so border behind is hidden */
+    padding: 0 0.4rem;
+    font-size: 1rem;
+  }
+  
+  /* ----------  INPUTS  ---------- */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .form-group label {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+  }
+  .form-group input {
+    background: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem;
+    color: #fff;
+  }
+  
+  .form-group.split {
+    display: flex;
+    gap: 1rem;
+  }
+  .form-group.split > div {
+    flex: 1;
+  }
+  
+  /* ----------  PAYMENT OPTIONS  ---------- */
+  .payment-methods {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .payment-methods label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .payment-methods input {
+    accent-color: #e53935;
+  }
+  
+  /* ----------  CARD DETAILS  ---------- */
+  .card-details {
+    background: #111;
+    padding: 1rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+  }
+  
+  /* ----------  CTA BUTTON  ---------- */
+  .checkout-form .btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .checkout-form .btn-primary:hover {
+    background: #c62828;
+  }
+  
+  /* ----------  TRANSACTION ACTIONS  ---------- */
+  .transaction-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .transaction-actions .btn-secondary {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .transaction-actions .btn-secondary:hover {
+    background: #c62828;
+  }
+  
+  /* ----------  RESPONSIVE  ---------- */
+  @media (max-width: 768px) {
+    .form-group.split {
+      flex-direction: column;
+    }
+    .payment-methods {
+      flex-direction: column;
+    }
+    .transaction-actions {
+      flex-direction: column;
+    }
+  }

@@ -1,0 +1,114 @@
+/* ============================================================
+   AUTH.CSS – existing modal styles
+   ============================================================ */
+
+   * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .auth-modal {
+    display: none;
+    position: fixed; z-index: 2000;
+    inset: 0; overflow: auto;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  
+  .auth-modal-content {
+    background: #1a1a1a;
+    margin: 8% auto; padding: 2rem;
+    max-width: 500px; width: 90%;
+    border: 2px solid #e53935; border-radius:10px;
+    animation: zoomIn 0.3s ease;
+    position: relative;
+  }
+  
+  @keyframes zoomIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
+  
+  .close-modal {
+    position: absolute; top:10px; right:20px;
+    font-size:2rem; color:#e53935; cursor:pointer;
+  }
+  
+  .auth-form {
+    display:flex; flex-direction:column; gap:1rem;
+  }
+  
+  .form-group label {
+    color:#e53935; font-weight:bold; margin-bottom:0.5rem; display:block;
+  }
+  
+  .form-group input {
+    width:100%; padding:0.75rem; font-size:1rem;
+    border:1px solid #e53935; border-radius:5px;
+    background:#000; color:#fff;
+  }
+  
+  .form-group input:focus {
+    outline:none; border-color:#c62828;
+    box-shadow:0 0 5px rgba(230,40,40,0.5);
+  }
+  
+  .auth-btn {
+    padding:0.75rem; font-size:1.1rem;
+    background:#e53935; color:#fff; border:none; border-radius:5px;
+    cursor:pointer; transition:background 0.3s ease;
+  }
+  .auth-btn:hover { background:#c62828; }
+  
+  .auth-footer {
+    margin-top:1rem; font-size:0.9rem; text-align:center;
+  }
+  .auth-footer a { color:#e53935; text-decoration:none; }
+  .auth-footer a:hover { text-decoration:underline; }
+  
+  
+  /* ============================================================
+     PROFILE MENU + DROPDOWN
+     ============================================================ */
+  
+  .profile-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .profile-dropdown {
+    position: absolute;
+    top: 40px; right: 0;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    display: none;
+    min-width: 150px;
+    z-index: 2001;
+  }
+  
+  .profile-dropdown li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .profile-dropdown li a:hover {
+    background: #222;
+  }

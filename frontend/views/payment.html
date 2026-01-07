@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Payment — CarRental</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="stylesheet" href="../css/payment.css"/>
+  <link rel="stylesheet" href="../css/auth.css"/>
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <div class="auth-buttons">
+      <div class="public-only"><button class="btn" id="auth-trigger">Join Us</button></div>
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+  </nav>
+
+  <!-- Payment Form -->
+  <main class="payment-page">
+    <h2 class="section-header">Payment Details</h2>
+    <div id="payment-summary" class="summary-card"></div>
+
+    <form id="payment-form" class="payment-form">
+      <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="card-expiry">Expiry (MM/YY)</label>
+          <input type="text" id="card-expiry" placeholder="MM/YY" required maxlength="5" />
+        </div>
+        <div class="form-group">
+          <label for="card-cvc">CVC</label>
+          <input type="text" id="card-cvc" placeholder="123" required maxlength="4" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <p>&copy; 2025 CarRental. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/payment.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

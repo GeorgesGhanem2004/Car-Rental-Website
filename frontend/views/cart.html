@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart – CarRental</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <!-- Cart‑only CSS -->
+  <link rel="stylesheet" href="../css/cart.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="dropdown">
+        <a href="carGroups.html" class="nav-link">Cars ▾</a>
+        <div class="dropdown-content">
+          <a href="carGroups.html">All Categories</a>
+          <a href="carGroup.html?type=SUV">SUV</a>
+          <a href="carGroup.html?type=Electric">Electric</a>
+          <a href="carGroup.html?type=Hybrid">Hybrid</a>
+        </div>
+      </li>
+      <li class="auth-only"><a href="reservation.html" class="nav-link">Reservation</a></li>
+      <li class="auth-only"><a href="booking.html" class="nav-link">Booking</a></li>
+      <li class="auth-only"><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+    <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
+    <div class="auth-buttons">
+      <div class="public-only">
+        <button class="btn" id="open-auth-modal">Join Us</button>
+      </div>
+      <div class="auth-only profile-menu">
+        <div class="profile-header">
+          <img src="/assets/default-profile.png" alt="Profile" class="profile-pic">
+          <span class="profile-name"></span>
+          <div class="profile-dropdown">
+            <a href="profile.html">My Profile</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="invoices.html">Invoices</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </nav>
+
+  <main class="cart-page">
+    <h1>Your Cart</h1>
+
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Car</th>
+          <th>Group</th>
+          <th>Pick‑Up Branch</th>
+          <th>Return Branch</th>
+          <th>Pick‑Up Date</th>
+          <th>Return Date</th>
+          <th>Driver</th>
+          <th>Extras</th>
+          <th>Insurance</th>
+          <th>Fuel</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- JS injects rows here -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10" style="text-align:right; font-weight:bold;">Total:</td>
+          <td colspan="2" id="cart-total" style="font-weight:bold;">$0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <button id="checkout-btn" class="btn">Proceed to Checkout</button>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

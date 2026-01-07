@@ -1,0 +1,65 @@
+/* Table Style */
+.car-specs-table {
+    width: 80%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.car-specs-table th, .car-specs-table td {
+    padding: 10px;
+    border: 1px solid red;
+}
+
+/* Header Style */
+.car-specs-table th {
+    background-color: red;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Row Data */
+.car-specs-table tbody tr {
+    background-color: #222;
+}
+
+.car-specs-table tbody tr:nth-child(even) {
+    background-color: #333;
+}
+
+.car-specs-table td {
+    color: #fff;
+}
+
+/* Hover effect */
+.car-specs-table tr:hover {
+    background-color: #444;
+}
+  
+.table-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.title-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+    .table-container{
+        overflow-x: scroll;
+    }
+
+}

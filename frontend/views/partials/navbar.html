@@ -1,0 +1,30 @@
+<!-- frontend/views/partials/navbar.html -->
+<nav class="navbar">
+    <a href="index.html" class="logo">CarRental</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="carGroups.html" class="nav-link">Cars</a></li>
+      <!-- Bookings will be moved into profile dropdown -->
+    </ul>
+  
+    <!-- Auth area: either Join Us or Profile dropdown -->
+    <div class="auth-area">
+      <!-- logged-out state -->
+      <button id="btn-join" class="btn">Join Us</button>
+  
+      <!-- logged-in state (hidden by default) -->
+      <div id="profile-menu" class="profile-menu" style="display:none">
+        <img src="" id="profile-pic" class="profile-pic" alt="Profile" />
+        <ul class="dropdown">
+          <li><a href="profile.html">My Profile</a></li>
+          <li><a href="bookings.html">My Bookings</a></li>
+          <li><a href="#" id="btn-logout">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="hamburger">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </nav>
+  
