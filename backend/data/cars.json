@@ -1,0 +1,139 @@
+[
+    {
+      "brand": "Mazda",
+      "model": "MX-5 Miata",
+      "year": 2025,
+      "group": "Convertible",
+      "dailyRate": 120,
+      "imagePath": "Convertible/2019-mazda-mx-5-miata-convertible-sports-car.jpg"
+    },
+    {
+      "brand": "Porsche",
+      "model": "718 Boxster",
+      "year": 2025,
+      "group": "Convertible",
+      "dailyRate": 200,
+      "imagePath": "Convertible/2022-Porsche-718-Boxster-PVOTY22-18.jpg.avif"
+    },
+    {
+      "brand": "BMW",
+      "model": "A8 series",
+      "year": 2025,
+      "group": "Convertible",
+      "dailyRate": 110,
+      "imagePath": "Convertible/bl79098.jpg"
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model S",
+      "year": 2025,
+      "group": "EV",
+      "dailyRate": 180,
+      "imagePath": "EV/2025-tesla-model-s-1-672d42e172407.jpg.avif"
+    },
+    {
+      "brand": "Nissan",
+      "model": "Leaf",
+      "year": 2024,
+      "group": "EV",
+      "dailyRate": 150,
+      "imagePath": "EV/a9b25a99-74ae-4ce8-bf98-d20fd9b2b927_Front-moving.jpg"
+    },
+    {
+      "brand": "Chevrolet",
+      "model": "Bolt",
+      "year": 2023,
+      "group": "EV",
+      "dailyRate": 140,
+      "imagePath": "EV/discover-3.jpg"
+    },
+    {
+      "brand": "Honda",
+      "model": "Insight",
+      "year": 2021,
+      "group": "Hybrid",
+      "dailyRate": 90,
+      "imagePath": "Hybrid/2021-honda-insight-02-1634321384.jpg"
+    },
+    {
+      "brand": "Toyota",
+      "model": "Prius",
+      "year": 2025,
+      "group": "Hybrid",
+      "dailyRate": 95,
+      "imagePath": "Hybrid/2025_toyota_prius_4dr-hatchback_limited_fq_oem_1_1600.jpg.avif"
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Ioniq 5",
+      "year": 2024,
+      "group": "Hybrid",
+      "dailyRate": 100,
+      "imagePath": "Hybrid/Hyundai_Ioniq_5_AWD_Techniq-Paket_-_f_31122024.jpg"
+    },
+    {
+      "brand": "Mercedes‑Benz",
+      "model": "S‑Class AMG‑S 63",
+      "year": 2025,
+      "group": "Luxury Sedan",
+      "dailyRate": 250,
+      "imagePath": "Luxury Sedan/2025_mercedes-benz_s-class_sedan_amg-s-63-e-performance_fq_oem_1_1600.jpg.avif"
+    },
+    {
+      "brand": "Audi",
+      "model": "A8",
+      "year": 2025,
+      "group": "Luxury Sedan",
+      "dailyRate": 230,
+      "imagePath": "Luxury Sedan/2025-Audi-A8.jpeg"
+    },
+    {
+      "brand": "BMW",
+      "model": "7 series",
+      "year": 2024,
+      "group": "Luxury Sedan",
+      "dailyRate": 220,
+      "imagePath": "Luxury Sedan/d183acf5d6da4d75bd417e2eddf8fd73.jpg"
+    },
+    {
+      "brand": "Chrysler",
+      "model": "Pacifica",
+      "year": 2023,
+      "group": "Minivan",
+      "dailyRate": 100,
+      "imagePath": "Minivan/fca73ca58bc70e9be213920d583ff2bf.jpg"
+    },
+    {
+      "brand": "Honda",
+      "model": "Odyssey",
+      "year": 2024,
+      "group": "Minivan",
+      "dailyRate": 110,
+      "imagePath": "Minivan/Honda-Odyssey-Exterior-2409.webp"
+    },
+    {
+      "brand": "Ford",
+      "model": "Explorer",
+      "year": 2025,
+      "group": "SUV",
+      "dailyRate": 120,
+      "imagePath": "SUV/2025-ford-explorer-f34.jpg.avif"
+    },
+    {
+      "brand": "Toyota",
+      "model": "Highlander",
+      "year": 2025,
+      "group": "SUV",
+      "dailyRate": 115,
+      "imagePath": "SUV/2025-toyota-highlander-102-66e97932a6f77.jpg.avif"
+    },
+    {
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2025,
+      "group": "SUV",
+      "dailyRate": 130,
+      "imagePath": "SUV/BMW-X5-Electrnoic-Throttle-Drive-DME.jpg"
+    }
+  ]
+  
